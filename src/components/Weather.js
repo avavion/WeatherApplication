@@ -6,7 +6,7 @@ const URL = 'http://api.weatherapi.com/v1';
 const API_KEY = "dedd2b41ffdb4854a5e203900210210";
 
 function Weather() {
-    let LOCATION = "";
+    let LOCATION = "Москва";
 
     if (localStorage.getItem("location") !== null) LOCATION = localStorage.getItem("location");
 
@@ -20,8 +20,6 @@ function Weather() {
             .catch(e => console.error(e))
             .finally(() => console.log("Запрос успешно завершён"));
     }, [searchValue]);
-
-    console.log(weather);
 
     return (
         <section className="section">
