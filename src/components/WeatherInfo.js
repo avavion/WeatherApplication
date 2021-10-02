@@ -1,24 +1,28 @@
 function WeatherInfo({ data }) {
-    if (data.cod !== 200) {
+    if (data.length === 0) {
+        return false;
+    }
+
+    if (data.error) {
         return (
-            <h3 className="text text--error">Город не найден</h3>
+            <h2 className="text">{data.error.message}</h2>
         );
     }
 
-    localStorage.setItem('location', data.name);
+    const location = data.location;
+    const weather = data.current;
+
+    localStorage.setItem('location', location.name);
 
     return (
         <div className="weather-info">
-            <h1>{data.name}</h1>
-            <div style={{ textAlign: "center" }}>
-                <h1>{data.weather[0].main}</h1>
-                <p>{data.weather[0].description}</p>
-            </div>
-            <h3 className="weather__temperature">Текущая температура: <span className="temperature">{Math.round(data.main.temp)}</span>&#8451;</h3>
-            <p className="weather__text">Минимальная температура: {Math.round(data.main.temp_min)}&#8451;. Максимальная температура: {Math.round(data.main.temp_max)}&#8451;</p>
-            <p>Видимость: {Number(data.visibility) / 100}%</p>
-            <p>Широта: {Number(data.coord.lat)} Долгота: {Number(data.coord.lon)}</p>
-            <p>Скорость ветра: {Number(data.wind.speed)} м/c</p>
+            <img width={64} height={64} src={weather.condition.icon} alt={weather.condition.text} />
+            <h4 className='weather__location'>{location.country}, {location.name} ({location.lat}, {location.lon})</h4>
+            <h2 className="weather__temperature">{Math.round(weather.temp_c)}&#176;</h2>
+            <p className="text text--grey">Ощущается как: {Math.round(weather.feelslike_c)}&#176;</p>
+            <p className="text text--grey">Скорость ветра: {weather.wind_kph} км/ч</p>
+            <p className="text text--grey text--small">Влажность воздуха: {weather.humidity}%</p>
+            <p className="text text--grey text--small">Ультрафиолетовый индекс: {weather.uv} из 10</p>
         </div>
     )
 }
