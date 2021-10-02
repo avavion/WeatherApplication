@@ -5,3 +5,63 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: sans-serif;
+  background-color: rgb(250, 250, 250);
+}
+
+.app {
+  padding: 30px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 960px;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  text-align: center;
+}
+
+.text {
+  font-size: 24px;
+}
+
+.text--error {
+  color: crimson;
+}
+
+.search {
+  margin: 20px 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.search label {
+  margin-bottom: 5px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.search__input {
+  text-align: center;
+  font-size: 18px;
+
+  border: none;
+  outline: none;
+
+  color: rgba(0, 0, 0, 0.3);
+
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0px 10px 10px -15px rgba(73, 137, 220, 1);
+}
